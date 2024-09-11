@@ -4,15 +4,23 @@ This repository provides replication code for the regression discontinuity numbe
 
 ## Data and Files
 
-To generate these results, the Lab used publicly available data from (add details about Violence Reduction Dashboard, how it was developed, etc). 
+To generate these results, the Lab used publicly available data from Chicago Data Portal. Specifically, the [Victims of Homicides and Non-Fatal Shootings](https://data.cityofchicago.org/Public-Safety/Violence-Reduction-Victims-of-Homicides-and-Non-Fa/gumc-mgzr/about_data) dataset.
+
+Background on public data: Chicago is home to 2.7 million people, spanning 77 community areas. Each community is itself approximately the size of a small to mid-size city, which complicates efforts for violence reduction stakeholders to serve communities efficiently and effectively. In recent periods of high violence, such as 2016, stakeholders were left without easy avenues to make informed service delivery decisions to support those most impacted by gun violence.
+
+Easily accessible, up-to-date data about crime trends is an essential tool for organizations to be able to prioritize violence prevention resources for the communities that need them most. Equally crucial is the ability to gather relevant insights quickly without expending bandwidth on extensive data analysis—a need shared by community groups and media stakeholders working to hold the City accountable and identify new, promising solutions to address violence.
+
+In response to these challenges, the Crime Lab partnered with the City to create the [Violence Reduction Dashboard](https://www.chicago.gov/city/en/sites/vrd/home.html) and launched it in May 2021. This tool was accompanied by making the majority of the underlying data publicly available for transparency and use, including the data leveraged in this analysis. For additional background, see this UChicago News piece ([Data on Demand: The Power of the UChicago Crime Lab's Violence Reduction Dashboard](https://harris.uchicago.edu/news-events/news/data-demand-power-uchicago-crime-labs-violence-reduction-dashboard)). 
 
 Specifically, the repository includes the necessary data and a replication script that processes the data, and produces the estimates of interest. Specifically, three data files are included: 
 
 -`homicides_nfs_vics_20240904.feather`: The aforementioned shooting incident data.
--`location_description_lookup.csv`: A crosswalk of locations in the above data to whether they are outdoors, indoors, or at exterior locations (locations that cannot be clearly classified into either category, such as inside cars or parking buildings).
+
 -`Police Districts (current).geojson`: A shapefile that delineates the area of each police district in the Chicago Police Department.
 
 The specific data snapshot from the Violence Reduction Dashboard is included in the repository because the data is live—including the exact snapshot used ensures the results are replicable as the data changes over time.
+
+The configuration file, `config.YAML` includes input parameters of interest, such as which locations are considered outdoors and exteriors, relevant implementation dates for the program (Topper and Ferrazares, 2024), and so forth.
 
 The script, `shotspotter_op_ed_replication.R`, carries out the following tasks to arrive at the reported numbers:
 
@@ -26,7 +34,7 @@ The regression discontinuity design relies on certain basic assumptions. The mai
 
 The estimate created on pre-treatment data provides a partial test of this assumption, as there is no pre-existing difference in lethality rates across treatment and control police districts at the boundary.
 
-A working paper with a full set of analyses, including estimates using a variety of additional specifications, standard regression discontinuity robustness checks, and more is forthcoming. A more complete detailing of the policy context, data and research design details and caveats, and discussion of results will be included.
+A working paper with a full set of analyses, including estimates using a variety of additional specifications, standard regression discontinuity identification and robustness checks, and more, is forthcoming. A more complete detailing of the policy context, data and research design details and caveats, and discussion of results will also be included.
 
 # References
 - Calonico, S., Cattaneo, M.D., and Titiunik, R. (2014). Robust Nonparametric Confidence Intervals for Regression-Discontinuity Designs. Econometrica 82(6): 2295-2326.
