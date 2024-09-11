@@ -1,6 +1,6 @@
 # Shotspotter Op-Ed Replication Code
 
-This repository provides replication code for the regression discontinuity numbers provided in the op-ed published by the Crime Lab in the Chicago Tribune (insert link when published).
+This repository provides replication code for the regression discontinuity numbers provided in the recent op-ed published by the Crime Lab in the Chicago Tribune ([Link here](https://www.chicagotribune.com/2024/09/11/opinion-shot-spotter-chicago-response-to-victims/?share=htec0pon1ceipcppptis)).
 
 ## Data and Files
 
