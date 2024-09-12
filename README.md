@@ -36,8 +36,16 @@ The estimate created on pre-treatment data provides a partial test of this assum
 
 A working paper with a full set of analyses, including estimates using a variety of additional specifications, standard regression discontinuity identification and robustness checks, and more, is forthcoming. A more complete detailing of the policy context, data and research design details and caveats, and discussion of results will also be included.
 
-# References
+## References
 - Calonico, S., Cattaneo, M.D., and Titiunik, R. (2014). Robust Nonparametric Confidence Intervals for Regression-Discontinuity Designs. Econometrica 82(6): 2295-2326.
 - Calonico, Cattaneo and Titiunik (2015). rdrobust: An R Package for Robust Nonparametric Inference in Regression-Discontinuity Designs. R Journal 7(1): 38-51.
 - Imbens, G. and Kalyanaraman, K. (2012). Optimal Bandwidth Choice for the Regression Discontinuity Estimator. The Review of Economic Studies 79(3): 933–959. https://doi.org/10.1093/restud/rdr043
 - Topper, M. and Ferrazares, T. (2024). The Unintended Consequences of Policing Technology: Evidence from ShotSpotter. Working Paper.
+
+## Disclaimer
+
+This site provides applications using data that has been modified for use from its original source, [www.cityofchicago.org](www.cityofchicago.org), the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one’s own risk.
+
+## Contact Information
+
+For questions, contact [this e-mail](terencechau@uchicago.edu).
