@@ -12,7 +12,7 @@ Easily accessible, up-to-date data about crime trends is an essential tool for o
 
 In response to these challenges, the Crime Lab partnered with the City to create the [Violence Reduction Dashboard](https://www.chicago.gov/city/en/sites/vrd/home.html) and launched it in May 2021. This tool was accompanied by making the majority of the underlying data publicly available for transparency and use, including the data leveraged in this analysis. For additional background, see this UChicago News piece ([Data on Demand: The Power of the UChicago Crime Lab's Violence Reduction Dashboard](https://harris.uchicago.edu/news-events/news/data-demand-power-uchicago-crime-labs-violence-reduction-dashboard)). 
 
-Specifically, the repository includes the necessary data and a replication script that processes the data, and produces the estimates of interest. Specifically, three data files are included: 
+The repository includes the necessary data and a replication script that processes the data, and produces the estimates of interest. Specifically, two data files are included: 
 
 -`homicides_nfs_vics_20240904.feather`: The aforementioned shooting incident data.
 
