@@ -1,5 +1,6 @@
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
+library(tidyverse)
 library(data.table)
 library(lubridate)
 library(arrow)
@@ -86,7 +87,7 @@ full_shooting_victim[, distance := as.numeric(ifelse(treat == 0, -1*dist, dist))
 post_reg_dt = full_shooting_victim[date >= date(config$last_shotspotter_implementation_date), ]
 pre_reg_dt = full_shooting_victim[date < date(config$first_shotspotter_implementation_date)]
 
-# Run RDD
+# Run basic RDD
 rdd_output = rdrobust(y = post_reg_dt$fatal_shooting,
                       x = post_reg_dt$distance,
                       c = 0,
@@ -96,11 +97,45 @@ rdd_output = rdrobust(y = post_reg_dt$fatal_shooting,
                       all = TRUE)
 summary(rdd_output)
 
-rdd_output = rdrobust(y = pre_reg_dt$fatal_shooting,
+ratio = rdd_output$bws[2, 2]/rdd_output$bws[1, 2]
+
+# Estimate for a range of bandwidths at the same h to b ratio
+rdd_output_list = lapply(seq(100, 1600, by = 100),
+                         function(x){
+                           rdrobust(y = post_reg_dt$fatal_shooting,
+                                    x = post_reg_dt$distance,
+                                    c = 0,
+                                    h = x,
+                                    b = x * ratio,
+                                    p = 1,
+                                    q = 2,
+                                    kernel = "triangular",
+                                    all = TRUE)
+                         })
+lapply(rdd_output_list, summary)
+
+coefficients = lapply(rdd_output_list, function(x){
+  data.frame(Coefficients = x$coef[1],
+             upper_bound = x$ci[3, 2],
+             lower_bound = x$ci[3, 1],
+             Bandwidth = x$bws[1, 1])
+}) %>% bind_rows()
+
+# Plot for a range of bandwidths
+coefficients %>% 
+  ggplot(aes(y = Coefficients, x = Bandwidth)) +
+  geom_point(color = 'darkorange2') +
+  geom_errorbar(aes(ymin = lower_bound, ymax = upper_bound),
+                alpha = 0.5) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  theme_light()
+
+# Estimate pre-treatment RDD
+rdd_output_pre = rdrobust(y = pre_reg_dt$fatal_shooting,
                       x = pre_reg_dt$distance,
                       c = 0,
                       p = 1,
                       q = 2,
                       kernel = "triangular",
                       all = TRUE)
-summary(rdd_output)
+summary(rdd_output_pre)
